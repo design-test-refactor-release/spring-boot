@@ -1,0 +1,29 @@
+plugins {
+    id 'com.github.samueltbrown.cucumber' version '0.8'
+}
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-web:1.2.1.RELEASE'
+
+    testCompile 'junit:junit:4.11'
+    testCompile 'info.cukes:cucumber-java:1.2.0'
+    testCompile(group: 'com.jayway.restassured', name: 'rest-assured', version: '2.4.0') {
+        exclude(module: 'groovy')
+    }
+    testCompile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.3.7'
+
+    cucumberRuntime 'info.cukes:cucumber-java:1.2.0'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.2.1'
+}
